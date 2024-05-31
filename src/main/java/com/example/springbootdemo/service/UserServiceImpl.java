@@ -3,7 +3,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.springbootdemo.entity.User;
 import com.example.springbootdemo.respository.UserRepository;
-
 import java.util.List;
 
 
@@ -19,6 +18,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserById(Long id) {
+
         return userRepository.findById(id).orElse(null);
     }
 
