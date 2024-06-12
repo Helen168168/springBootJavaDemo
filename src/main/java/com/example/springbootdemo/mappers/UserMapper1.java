@@ -1,4 +1,4 @@
-package com.example.springbootdemo.mapper;
+package com.example.springbootdemo.mappers;
 
 
 import com.example.springbootdemo.entity.User;
