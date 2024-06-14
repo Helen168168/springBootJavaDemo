@@ -9,12 +9,10 @@ import java.util.List;
 @Service
 public class UserService {
     private UserMapper userMapper;
-
     @Autowired
     public  UserService(UserMapper userMapper) {
         this.userMapper = userMapper;
     }
-
     public User getUserById(String id) {
         return userMapper.findById(id);
     }

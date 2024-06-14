@@ -1,7 +1,9 @@
 package com.example.springbootdemo.controller;
 
 
+import com.example.springbootdemo.entity.ResponseResult;
 import com.example.springbootdemo.entity.User;
+import com.example.springbootdemo.enums.HttpStatusEnum;
 import com.example.springbootdemo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,8 +21,14 @@ public class UserController {
     }
 
     @GetMapping("/users/{id}")
-    public User getUserById(@PathVariable String id) {
-        return userService.getUserById(id);
+    public ResponseResult<User> getUserById(@PathVariable String id) {
+        try {
+            User user = userService.getUserById(id);
+            return ResponseResult.ok(user);
+        } catch(Exception e) {
+            return ResponseResult.error(HttpStatusEnum.INTERNAL_SERVER_ERROR);
+        }
+
     }
 
     @PostMapping("/users/add")
