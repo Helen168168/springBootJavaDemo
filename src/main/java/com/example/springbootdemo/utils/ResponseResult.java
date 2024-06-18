@@ -1,4 +1,4 @@
-package com.example.springbootdemo.entity;
+package com.example.springbootdemo.utils;
 
 import com.example.springbootdemo.enums.HttpStatusEnum;
 import lombok.Data;

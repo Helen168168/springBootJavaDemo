@@ -1,7 +1,7 @@
 package com.example.springbootdemo.controller;
 
 
-import com.example.springbootdemo.entity.ResponseResult;
+import com.example.springbootdemo.utils.ResponseResult;
 import com.example.springbootdemo.entity.User;
 import com.example.springbootdemo.enums.HttpStatusEnum;
 import com.example.springbootdemo.service.UserService;
@@ -28,7 +28,6 @@ public class UserController {
         } catch(Exception e) {
             return ResponseResult.error(HttpStatusEnum.INTERNAL_SERVER_ERROR);
         }
-
     }
 
     @PostMapping("/users/add")
