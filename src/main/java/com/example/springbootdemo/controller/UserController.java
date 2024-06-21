@@ -31,28 +31,34 @@ public class UserController {
     }
 
     @PostMapping("/users/add")
-    public void addUser(@RequestBody User user) {
+    public ResponseResult<Boolean> addUser(@RequestBody User user) {
        userService.addUser(user);
-        return;
+        return ResponseResult.ok();
     }
 
     @PostMapping("/users/batch")
-    public ResponseEntity<String> batchCreateUsers(@RequestBody List<User> users) {
-        for(User user: users) {
-            userService.addUser(user);
+    public ResponseResult<Boolean> batchCreateUsers(@RequestBody List<User> users) {
+        try {
+            for(User user: users) {
+                userService.addUser(user);
+            }
+            return ResponseResult.ok();
+        } catch(Exception e) {
+            return ResponseResult.error(HttpStatusEnum.FAIL);
         }
-        return ResponseEntity.ok("批量创建用户成功");
     }
 
     @GetMapping("/users/all")
-    public List<User> getAllUsers() {
-        return userService.getAllUsers();
+    public ResponseResult<List<User>> getAllUsers() {
+        List<User> users = userService.getAllUsers();
+        return ResponseResult.ok(users);
+
     }
 
     @DeleteMapping("/users/batchDel")
-    public ResponseEntity<String> deleteUserById(@RequestBody List<String> ids) {
+    public ResponseResult<String> deleteUserById(@RequestBody List<String> ids) {
         userService.deleteUserById(ids);
-        return ResponseEntity.ok("Deleted " + ids.size() + " users successfully.");
+        return ResponseResult.ok("Deleted " + ids.size() + " users successfully.");
     }
 }
 
