@@ -5,7 +5,9 @@ public enum HttpStatusEnum {
     FAIL(400, "操作失败"),
     NOT_FOUND(404, "未找到"),
     NO_AUTHORIZED(401, "没有权限"),
+    NO_LOGIN(403, "用户未登录或已过期"),
     INTERNAL_SERVER_ERROR(500, "服务器内部错误");
+
 
     private int code;
     private String message;
