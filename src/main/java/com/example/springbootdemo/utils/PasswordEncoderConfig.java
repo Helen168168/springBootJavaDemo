@@ -29,7 +29,7 @@ public class PasswordEncoderConfig {
     @Bean
     public PasswordEncoder passwordEncoder() {
         Map<String, PasswordEncoder> encoders = new HashMap<>();
-        encoders.put("bcrypt", new BCryptPasswordEncoder());
+        encoders.put("bcrypt", new BCryptPasswordEncoder()); //
         encoders.put("pbkdf2", Pbkdf2PasswordEncoder.defaultsForSpringSecurity_v5_8());
         encoders.put("scrypt", new SCryptPasswordEncoder(4,8, 1,32, 16));
         return new DelegatingPasswordEncoder(passwordEncodeKey, encoders);

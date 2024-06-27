@@ -6,7 +6,6 @@ import jakarta.annotation.Resource;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +18,7 @@ import java.util.UUID;
 public class LoginController {
 
     @Resource
-    private AuthenticationManager authenticationManager;
+    private AuthenticationManager authenticationManager; //认证管理器处理认证请求
 
     /**
      * 用户名密码登录
@@ -29,6 +28,7 @@ public class LoginController {
      */
     @GetMapping("/usernamePwd")
     public ResponseResult<?> usernamePwd(String username, String password) {
+        //spring security的核心，用于封装用户凭证(用户名和密码)进行认证处理， principal存储用户信息或者用户实体对象，credentials用于存储用户凭证比如密码
         UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(username, password);
         try {
             authenticationManager.authenticate(usernamePasswordAuthenticationToken);
